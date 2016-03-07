@@ -23,7 +23,7 @@ MOV N_[0b0000] INTO STATUS_BUS
 INC8 VGA_DRIVER.ColumnCount
 
 #If we passed into a new line, reset column count, and increment line count
-JMPNE VGA_DRIVER.ColumnCount VGA_DRIVER.ColumnMax TO VGA_DRIVER.DoneChar
+JMPNE8 VGA_DRIVER.ColumnCount VGA_DRIVER.ColumnMax TO VGA_DRIVER.DoneChar
 
 MOV N_[0] INTO VGA_DRIVER.ColumnCount[0]
 MOV N_[0] INTO VGA_DRIVER.ColumnCount[1]
@@ -31,7 +31,7 @@ MOV N_[0] INTO VGA_DRIVER.ColumnCount[1]
 INC8 VGA_DRIVER.LineCount
 
 #If we rolled over the end of the screen, reset row count as well.
-JMPNE VGA_DRIVER.LineCount VGA_DRIVER.LineMax TO VGA_DRIVER.DoneChar
+JMPNE8 VGA_DRIVER.LineCount VGA_DRIVER.LineMax TO VGA_DRIVER.DoneChar
 
 MOV N_[0] INTO VGA_DRIVER.LineCount[0]
 MOV N_[0] INTO VGA_DRIVER.LineCount[1]
@@ -68,7 +68,7 @@ JMP VGA_DRIVER.Entry
 
 #WHILE (columnCount != 0)
 VGA_DRIVER.NLRet1:
-JMPNE VGA_DRIVER.ColumnCount VGA_DRIVER.ZeroByte TO VGA_DRIVER.NLLoop
+JMPNE8 VGA_DRIVER.ColumnCount VGA_DRIVER.ZeroByte TO VGA_DRIVER.NLLoop
 
 #Return
 LOD N_[0]
@@ -85,7 +85,7 @@ MOVADDR VGA_DRIVER.CSRet1 INTO VGA_DRIVER.NLExit[1]
 #While lineCount != 0
 #	NewLine;
 VGA_DRIVER.CSLoop1:
-JMPEQ VGA_DRIVER.LineCount VGA_DRIVER.ZeroByte TO VGA_DRIVER.CSDoneLoop1
+JMPEQ8 VGA_DRIVER.LineCount VGA_DRIVER.ZeroByte TO VGA_DRIVER.CSDoneLoop1
 
 LOD N_[0]
 JMP VGA_DRIVER.EntryNewLine
@@ -103,8 +103,9 @@ VGA_DRIVER.CSLoop2:
 LOD N_[0]
 JMP VGA_DRIVER.EntryNewLine
 
+#WHILE
 VGA_DRIVER.CSRet2:
-JMPNE VGA_DRIVER.LineCount VGA_DRIVER.ZeroByte TO VGA_DRIVER.CSLoop2
+JMPNE8 VGA_DRIVER.LineCount VGA_DRIVER.ZeroByte TO VGA_DRIVER.CSLoop2
 
 #Control falls through when this loop exits
 
