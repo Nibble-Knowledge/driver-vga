@@ -1,0 +1,29 @@
+The vga works on a relatively simple protocol, with one little exception.
+
+To write a character to the VGA, send three pulses on the "Write" line.
+With the first pulse, send the most significant nibble of the ASCII code
+for the character you want to display. With the second pulse, send the
+least significant nibble of the code to display. The third pulse does not
+care what data is presented; it is necessary for the internal operation
+of the vga card itself.
+
+The ready signal is barely used. It is permanently asserted when the vga
+card is not in its reset cycle, so it is probably safe to assume that by
+the time the CPU itself is booted, the vga is ready to use. Do not worry
+about the ready signal.
+
+This is all the actual protocol that the VGA supports; that said, a sane
+user will probably want to add some functionality in the driver. There is
+no native command for a newline, or clearing the screen - most non-printing
+characters are presented as either garbage or a space character. So, we
+must manipulate the screen using only the "display character" command.
+
+The screen is 40 columns wide by 30 rows high. This can be used to our
+advantage; by keeping track of our current cursor position in software, we
+can implement a newline character, as well as a "clear screen" command.
+
+Clearing the screen, when the screen has n characters displayed on it, can
+be achieved by printing (2400 - n) space characters.
+
+Going to a new line, when the current line has n characters on it so far,
+can be achieved by printing (40 - n) space characters.
