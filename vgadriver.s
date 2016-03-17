@@ -5,7 +5,7 @@
 VGA_DRIVER.Entry:
 
 #Subject to change when chip select addresses finalized
-MOV N_[1] INTO CHIP_SELECT
+MOV CS_VGA INTO CHIP_SELECT
 
 #Print the character
 MOV N_[0b0100] INTO STATUS_BUS
@@ -43,7 +43,7 @@ LOD N_[0]
 #Internally managed jump point - always reset to point to
 #the actual exit when done.
 VGA_DRIVER.CharExit:
-JMP VGA_DRIVER.Exit
+JMP VGA_DRIVER.Done
 
 
 
@@ -117,8 +117,12 @@ MOVADDR VGA_DRIVER.NLDone INTO VGA_DRIVER.NLExit[1]
 
 #clean up our first modifiable jump point, if we used the newline at all.
 VGA_DRIVER.NLDone:
-MOVADDR VGA_DRIVER.Exit INTO VGA_DRIVER.CharExit[1]
+MOVADDR VGA_DRIVER.Done INTO VGA_DRIVER.CharExit[1]
 LOD N_[0]
+
+VGA_DRIVER.Done
+
+MOV N_[F] INTO CHIP_SELECT
 
 VGA_DRIVER.Exit:
 JMP 0x0000
@@ -126,13 +130,13 @@ JMP 0x0000
 
 
 VGA_DRIVER.Char:		.data 2
-VGA_DRIVER.LineCount:	.data 2 0x0000
-VGA_DRIVER.ColumnCount:	.data 2 0x0000
+VGA_DRIVER.LineCount:	.data 2 0x00
+VGA_DRIVER.ColumnCount:	.data 2 0x00
 
 VGA_DRIVER.LineMax:		.data 2 0d30
 VGA_DRIVER.ColumnMax:	.data 2 0d40
 
-VGA_DRIVER.ZeroByte:	.data 2 0x0000
-VGA_DRIVER.SpaceChar:	.data 2 0x0020
+VGA_DRIVER.ZeroByte:	.data 2 0x00
+VGA_DRIVER.SpaceChar:	.data 2 0x20
 
 
