@@ -4,6 +4,7 @@
 #Regular entry point, for printing a character
 VGA_DRIVER.Entry:
 
+MOV N_[0b0000] INTO STATUS_BUS
 #Subject to change when chip select addresses finalized
 MOV CS_VGA INTO CHIP_SELECT
 
@@ -14,6 +15,9 @@ MOV N_[0b0000] INTO STATUS_BUS
 
 MOV N_[0b0100] INTO STATUS_BUS
 MOV VGA_DRIVER.Char[1] INTO DATA_BUS
+MOV N_[0b0000] INTO STATUS_BUS
+
+MOV N_[0b0100] INTO STATUS_BUS
 MOV N_[0b0000] INTO STATUS_BUS
 
 MOV N_[0b0100] INTO STATUS_BUS
