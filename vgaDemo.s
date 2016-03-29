@@ -11,6 +11,7 @@ INCL vgadriver.s
 Start:
 
 MOVADDR AReturn INTO VGA_DRIVER.Exit[1]
+MOV8 Zero INTO Count
 
 FirstLoop:
 
@@ -59,6 +60,7 @@ Count:	.data 2 0x00
 
 Sixteen:	.data 2 0x10
 TwentyFour:		.data 2 0x18
+Zero:         .data 2 0x00
 
 AChar:	.ascii 'A'
 HChar:	.ascii 'H'
