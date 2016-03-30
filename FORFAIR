@@ -1,0 +1,444 @@
+INF
+PINF
+BADR 1024
+EPINF
+DSEC D_SEC
+DNUM 11
+DSIZE 2
+DNUM 1
+DSIZE 4
+NSTART 3
+EINF
+Start:
+LOD &(AReturn[0])[0]
+STR VGA_DRIVER.Exit[1]
+LOD &(AReturn[0])[1]
+STR VGA_DRIVER.Exit[2]
+LOD &(AReturn[0])[2]
+STR VGA_DRIVER.Exit[3]
+LOD &(AReturn[0])[3]
+STR VGA_DRIVER.Exit[4]
+LOD Zero[0]
+STR Count[0]
+LOD Zero[1]
+STR Count[1]
+FirstLoop:
+LOD AChar[0]
+STR VGA_DRIVER.Char[0]
+LOD AChar[1]
+STR VGA_DRIVER.Char[1]
+LOD 3
+JMP VGA_DRIVER.Entry
+AReturn:
+LOD 11
+ADD 11
+LOD 3
+ADD Count[1]
+STR Count[1]
+LOD 3
+ADD Count[0]
+STR Count[0]
+LOD 11
+ADD 11
+LOD Count[1]
+NND 18
+ADD Sixteen[1]
+LOD Count[0]
+NND 18
+ADD Sixteen[0]
+CXA 0
+NND 11
+NND 18
+STR macro[0]
+LOD 3
+ADD 3
+LOD macro[0]
+ADD 18
+LOD 18
+ADD 3
+JMP FirstLoop[0]
+LOD &(HReturn[0])[0]
+STR VGA_DRIVER.Exit[1]
+LOD &(HReturn[0])[1]
+STR VGA_DRIVER.Exit[2]
+LOD &(HReturn[0])[2]
+STR VGA_DRIVER.Exit[3]
+LOD &(HReturn[0])[3]
+STR VGA_DRIVER.Exit[4]
+SecondLoop:
+LOD HChar[0]
+STR VGA_DRIVER.Char[0]
+LOD HChar[1]
+STR VGA_DRIVER.Char[1]
+LOD 3
+JMP VGA_DRIVER.Entry
+HReturn:
+LOD 11
+ADD 11
+LOD 3
+ADD Count[1]
+STR Count[1]
+LOD 3
+ADD Count[0]
+STR Count[0]
+LOD 11
+ADD 11
+LOD Count[1]
+NND 18
+ADD TwentyFour[1]
+LOD Count[0]
+NND 18
+ADD TwentyFour[0]
+CXA 0
+NND 11
+NND 18
+STR macro[0]
+LOD 3
+ADD 3
+LOD macro[0]
+ADD 18
+LOD 18
+ADD 3
+JMP SecondLoop[0]
+LOD &(LReturn[0])[0]
+STR VGA_DRIVER.Exit[1]
+LOD &(LReturn[0])[1]
+STR VGA_DRIVER.Exit[2]
+LOD &(LReturn[0])[2]
+STR VGA_DRIVER.Exit[3]
+LOD &(LReturn[0])[3]
+STR VGA_DRIVER.Exit[4]
+LOD 3
+JMP VGA_DRIVER.EntryNewline
+LReturn:
+LOD &(SReturn[0])[0]
+STR VGA_DRIVER.Exit[1]
+LOD &(SReturn[0])[1]
+STR VGA_DRIVER.Exit[2]
+LOD &(SReturn[0])[2]
+STR VGA_DRIVER.Exit[3]
+LOD &(SReturn[0])[3]
+STR VGA_DRIVER.Exit[4]
+LOD Slug[0]
+STR VGA_DRIVER.Char[0]
+LOD Slug[1]
+STR VGA_DRIVER.Char[1]
+LOD 3
+JMP VGA_DRIVER.Entry
+SReturn:
+LOD &(CReturn[0])[0]
+STR VGA_DRIVER.Exit[1]
+LOD &(CReturn[0])[1]
+STR VGA_DRIVER.Exit[2]
+LOD &(CReturn[0])[2]
+STR VGA_DRIVER.Exit[3]
+LOD &(CReturn[0])[3]
+STR VGA_DRIVER.Exit[4]
+LOD 3
+JMP VGA_DRIVER.EntryClearScreen
+CReturn:
+LOD 3
+JMP Start
+VGA_DRIVER.Entry:
+LOD 3
+STR 1
+LOD 6
+STR 0
+LOD 7
+STR 1
+LOD VGA_DRIVER.Char[0]
+STR 2
+LOD 3
+STR 1
+LOD 7
+STR 1
+LOD VGA_DRIVER.Char[1]
+STR 2
+LOD 3
+STR 1
+LOD 7
+STR 1
+LOD 3
+STR 1
+LOD 7
+STR 1
+LOD 3
+STR 1
+LOD 11
+ADD 11
+LOD 3
+ADD VGA_DRIVER.ColumnCount[1]
+STR VGA_DRIVER.ColumnCount[1]
+LOD 3
+ADD VGA_DRIVER.ColumnCount[0]
+STR VGA_DRIVER.ColumnCount[0]
+LOD VGA_DRIVER.ColumnCount[0]
+NND VGA_DRIVER.ColumnMax[0]
+STR macro[0]
+NND VGA_DRIVER.ColumnCount[0]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ColumnMax[0]
+NND macro[1]
+STR macro[2]
+LOD VGA_DRIVER.ColumnCount[1]
+NND VGA_DRIVER.ColumnMax[1]
+STR macro[0]
+NND VGA_DRIVER.ColumnCount[1]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ColumnMax[1]
+NND macro[1]
+STR macro[3]
+LOD macro[3]
+NND 18
+STR macro[0]
+LOD macro[2]
+NND 18
+NND macro[0]
+STR macro[1]
+LOD macro[1]
+STR macro[0]
+LOD 3
+ADD 3
+LOD macro[0]
+ADD 18
+LOD 18
+ADD 3
+JMP VGA_DRIVER.DoneChar[0]
+LOD 3
+STR VGA_DRIVER.ColumnCount[0]
+LOD 3
+STR VGA_DRIVER.ColumnCount[1]
+LOD 11
+ADD 11
+LOD 3
+ADD VGA_DRIVER.LineCount[1]
+STR VGA_DRIVER.LineCount[1]
+LOD 3
+ADD VGA_DRIVER.LineCount[0]
+STR VGA_DRIVER.LineCount[0]
+LOD VGA_DRIVER.LineCount[0]
+NND VGA_DRIVER.LineMax[0]
+STR macro[0]
+NND VGA_DRIVER.LineCount[0]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.LineMax[0]
+NND macro[1]
+STR macro[2]
+LOD VGA_DRIVER.LineCount[1]
+NND VGA_DRIVER.LineMax[1]
+STR macro[0]
+NND VGA_DRIVER.LineCount[1]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.LineMax[1]
+NND macro[1]
+STR macro[3]
+LOD macro[3]
+NND 18
+STR macro[0]
+LOD macro[2]
+NND 18
+NND macro[0]
+STR macro[1]
+LOD macro[1]
+STR macro[0]
+LOD 3
+ADD 3
+LOD macro[0]
+ADD 18
+LOD 18
+ADD 3
+JMP VGA_DRIVER.DoneChar[0]
+LOD 3
+STR VGA_DRIVER.LineCount[0]
+LOD 3
+STR VGA_DRIVER.LineCount[1]
+VGA_DRIVER.DoneChar:
+LOD 3
+VGA_DRIVER.CharExit:
+JMP VGA_DRIVER.Done
+VGA_DRIVER.EntryNewline:
+LOD VGA_DRIVER.SpaceChar[0]
+STR VGA_DRIVER.Char[0]
+LOD VGA_DRIVER.SpaceChar[1]
+STR VGA_DRIVER.Char[1]
+LOD &(VGA_DRIVER.NLRet1[0])[0]
+STR VGA_DRIVER.CharExit[1]
+LOD &(VGA_DRIVER.NLRet1[0])[1]
+STR VGA_DRIVER.CharExit[2]
+LOD &(VGA_DRIVER.NLRet1[0])[2]
+STR VGA_DRIVER.CharExit[3]
+LOD &(VGA_DRIVER.NLRet1[0])[3]
+STR VGA_DRIVER.CharExit[4]
+VGA_DRIVER.NLLoop:
+LOD 3
+JMP VGA_DRIVER.Entry
+VGA_DRIVER.NLRet1:
+LOD VGA_DRIVER.ColumnCount[0]
+NND VGA_DRIVER.ZeroByte[0]
+STR macro[0]
+NND VGA_DRIVER.ColumnCount[0]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ZeroByte[0]
+NND macro[1]
+STR macro[2]
+LOD VGA_DRIVER.ColumnCount[1]
+NND VGA_DRIVER.ZeroByte[1]
+STR macro[0]
+NND VGA_DRIVER.ColumnCount[1]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ZeroByte[1]
+NND macro[1]
+STR macro[3]
+LOD macro[3]
+NND 18
+STR macro[0]
+LOD macro[2]
+NND 18
+NND macro[0]
+STR macro[1]
+LOD macro[1]
+STR macro[0]
+LOD 3
+ADD 3
+LOD macro[0]
+ADD 18
+LOD 18
+ADD 3
+JMP VGA_DRIVER.NLLoop[0]
+LOD 3
+VGA_DRIVER.NLExit:
+JMP VGA_DRIVER.NLDone
+VGA_DRIVER.EntryClearScreen:
+LOD &(VGA_DRIVER.CSRet1[0])[0]
+STR VGA_DRIVER.NLExit[1]
+LOD &(VGA_DRIVER.CSRet1[0])[1]
+STR VGA_DRIVER.NLExit[2]
+LOD &(VGA_DRIVER.CSRet1[0])[2]
+STR VGA_DRIVER.NLExit[3]
+LOD &(VGA_DRIVER.CSRet1[0])[3]
+STR VGA_DRIVER.NLExit[4]
+VGA_DRIVER.CSLoop1:
+LOD VGA_DRIVER.LineCount[0]
+NND VGA_DRIVER.ZeroByte[0]
+STR macro[0]
+NND VGA_DRIVER.LineCount[0]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ZeroByte[0]
+NND macro[1]
+STR macro[2]
+LOD VGA_DRIVER.LineCount[1]
+NND VGA_DRIVER.ZeroByte[1]
+STR macro[0]
+NND VGA_DRIVER.LineCount[1]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ZeroByte[1]
+NND macro[1]
+STR macro[3]
+LOD macro[2]
+NND 18
+STR macro[0]
+LOD macro[3]
+NND 18
+NND macro[0]
+STR macro[1]
+LOD macro[1]
+JMP VGA_DRIVER.CSDoneLoop1[0]
+LOD 3
+JMP VGA_DRIVER.EntryNewline
+VGA_DRIVER.CSRet1:
+LOD 3
+JMP VGA_DRIVER.CSLoop1
+VGA_DRIVER.CSDoneLoop1:
+LOD &(VGA_DRIVER.CSRet2[0])[0]
+STR VGA_DRIVER.NLExit[1]
+LOD &(VGA_DRIVER.CSRet2[0])[1]
+STR VGA_DRIVER.NLExit[2]
+LOD &(VGA_DRIVER.CSRet2[0])[2]
+STR VGA_DRIVER.NLExit[3]
+LOD &(VGA_DRIVER.CSRet2[0])[3]
+STR VGA_DRIVER.NLExit[4]
+VGA_DRIVER.CSLoop2:
+LOD 3
+JMP VGA_DRIVER.EntryNewline
+VGA_DRIVER.CSRet2:
+LOD VGA_DRIVER.LineCount[0]
+NND VGA_DRIVER.ZeroByte[0]
+STR macro[0]
+NND VGA_DRIVER.LineCount[0]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ZeroByte[0]
+NND macro[1]
+STR macro[2]
+LOD VGA_DRIVER.LineCount[1]
+NND VGA_DRIVER.ZeroByte[1]
+STR macro[0]
+NND VGA_DRIVER.LineCount[1]
+STR macro[1]
+LOD macro[0]
+NND VGA_DRIVER.ZeroByte[1]
+NND macro[1]
+STR macro[3]
+LOD macro[3]
+NND 18
+STR macro[0]
+LOD macro[2]
+NND 18
+NND macro[0]
+STR macro[1]
+LOD macro[1]
+STR macro[0]
+LOD 3
+ADD 3
+LOD macro[0]
+ADD 18
+LOD 18
+ADD 3
+JMP VGA_DRIVER.CSLoop2[0]
+LOD &(VGA_DRIVER.NLDone[0])[0]
+STR VGA_DRIVER.NLExit[1]
+LOD &(VGA_DRIVER.NLDone[0])[1]
+STR VGA_DRIVER.NLExit[2]
+LOD &(VGA_DRIVER.NLDone[0])[2]
+STR VGA_DRIVER.NLExit[3]
+LOD &(VGA_DRIVER.NLDone[0])[3]
+STR VGA_DRIVER.NLExit[4]
+VGA_DRIVER.NLDone:
+LOD &(VGA_DRIVER.Done[0])[0]
+STR VGA_DRIVER.CharExit[1]
+LOD &(VGA_DRIVER.Done[0])[1]
+STR VGA_DRIVER.CharExit[2]
+LOD &(VGA_DRIVER.Done[0])[2]
+STR VGA_DRIVER.CharExit[3]
+LOD &(VGA_DRIVER.Done[0])[3]
+STR VGA_DRIVER.CharExit[4]
+LOD 3
+VGA_DRIVER.Done:
+LOD 18
+STR 0
+LOD 3
+VGA_DRIVER.Exit:
+JMP 0x0000
+Count: D_SEC: .data 2 0x00
+Sixteen: .data 2 0x10
+TwentyFour: .data 2 0x18
+Zero: .data 2 0x00
+AChar: .ascii "A"
+HChar: .ascii "H"
+Slug: .ascii "!"
+VGA_DRIVER.Char: .data 2
+VGA_DRIVER.LineCount: .data 2 0x00
+VGA_DRIVER.ColumnCount: .data 2 0x00
+VGA_DRIVER.LineMax: .data 2 0d30
+VGA_DRIVER.ColumnMax: .data 2 0d40
+VGA_DRIVER.ZeroByte: .data 2 0x00
+VGA_DRIVER.SpaceChar: .data 2 0x20
+macro: .data 4
