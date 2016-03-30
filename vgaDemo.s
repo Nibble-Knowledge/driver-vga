@@ -62,6 +62,6 @@ Sixteen:	.data 2 0x10
 TwentyFour:		.data 2 0x18
 Zero:         .data 2 0x00
 
-AChar:	.ascii 'A'
-HChar:	.ascii 'H'
+AChar:	.data 2 0x41
+HChar:	.data 2 0x48
 Slug:	.ascii '!'
